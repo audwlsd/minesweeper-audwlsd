@@ -94,13 +94,24 @@ void print_table()
             }
             value = table_array[i][j];
 
-            if((value >= 0 && value <= 8) || value == 0 || value == 99)
+            if(is_uncovered(value)
                 printf("|X");
-            else if(value == 10) // clean area
+
+
+
+            else if(is_flagged(value) // clean area
                 printf("|%s%d%s",KCYN, value - 10,KNRM);
-            else if(value == 11) // the number of near mine is 1
+
+
+
+
+            else if(num_mines(value)==0) // the number of near mine is 1
                 printf("|%s%d%s",KYEL, value - 10,KNRM);
-            else if(value > 11 && value <= 18) // the number of near mine is greater than 1
+
+
+
+
+            else if(num_mines(value)==1) // the number of near mine is greater than 1
                 printf("|%s%d%s",KRED, value - 10,KNRM);
             else if((value >= 20 && value <= 28) || value == 100)
                 printf("|%sF%s",KGRN,KNRM);
